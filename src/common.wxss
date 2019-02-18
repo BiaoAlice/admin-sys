@@ -1,0 +1,15 @@
+.box {
+  display: flex;
+  text-align: center;
+}
+.box .navleft {
+  position: fixed;
+  min-width: 180px;
+  height: calc(100vh);
+  background-color: #041527;
+}
+.box .colright {
+  margin-left: 180px;
+  flex: 1;
+  background-color: #f1f3f5;
+}

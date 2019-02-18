@@ -1,0 +1,19 @@
+.content {
+  min-height: calc(68vh);
+  box-sizing: border-box;
+  border-top: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .container {
+  position: relative;
+  width: 96%;
+  background-color: white;
+  min-height: calc(63vh);
+}
+.content .container h2 {
+  position: absolute;
+  top: 45%;
+  left: 40%;
+}
