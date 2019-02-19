@@ -15,11 +15,10 @@ class NavLeft extends Component{
                 >
                     <SubMenu  title={<span><Icon type="user-add" /><span>人员管理</span></span>}>
                         <Menu.Item key="1"><Link to="/userlist">用户</Link></Menu.Item>
-                        <Menu.Item key="2">Option 2</Menu.Item>
+                        <Menu.Item key="2">管理员</Menu.Item>
                     </SubMenu>
-                    <SubMenu  title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-                        <Menu.Item key="1">Option 1</Menu.Item>
-                        <Menu.Item key="2">Option 2</Menu.Item>
+                    <SubMenu  title={<span><Icon type="mail" /><span>订单管理</span></span>}>
+                        <Menu.Item key="3">订单列表</Menu.Item>
                     </SubMenu>
                     
                 </Menu>

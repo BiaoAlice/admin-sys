@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import Home from './pages/Home'
 import User from './pages/User'
+import Login from './pages/Login'
 import store from './redux/store'
 
 import './App.less';
@@ -13,7 +14,8 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <Switch>
-              <Route path="/" exact component={Home}></Route>
+              <Route path="/" exact component={Login}></Route>
+              <Route path="/home" component={Home}/> 
               <Route path="/userlist" component={User}></Route>
             </Switch>
           </Router>

@@ -6,7 +6,7 @@ import Title from '../../component/Title/Title'
 import UserList from '../../component/UserList/UserList'
 import Footer from '../../component/Footer/Footer'
 import '../../common.less'
-class Home extends Component{
+class User extends Component{
     render(){
         return(
             <div className="home">
@@ -26,4 +26,4 @@ class Home extends Component{
     }
 }
 
-export default Home;
+export default User;
