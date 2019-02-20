@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import './header.less'
 class Header extends Component{
     render(){
@@ -7,7 +8,7 @@ class Header extends Component{
             <div className="header">
                 <div className="container">
                     <span>{this.props.userName}</span>
-                    <a href="javascript:;">退出</a>
+                    <Link to="/" onClick = {()=>{this.props.exit(this)}}>退出</Link>
                 </div>
             </div>
         )
@@ -18,4 +19,9 @@ const mapState=state=>{
         userName:state.userName
     }
 }
-export default connect(mapState,null)(Header);
+const mapDispatch = dispatch=>{
+    return{
+        
+    }
+}
+export default connect(mapState,mapDispatch)(Header);

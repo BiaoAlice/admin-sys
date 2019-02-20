@@ -8,7 +8,9 @@ const defaultState = {
     visible:false,
     newuserName:'',
     newuserPsd:'',
-    newuserId:''
+    newuserId:'',
+    orderList:[],
+    selected:[]
 }
 export default (state = defaultState, action)=>{
     switch (action.type){
@@ -67,6 +69,15 @@ export default (state = defaultState, action)=>{
         case "removeuser":
             newState= { ...state};
             newState.selectedRowKeys =[];
+            return newState;
+        case "showOrderList":
+            newState= { ...state};
+            console.log(action.list);
+            newState.orderList =action.list;
+            return newState;
+        case "changeOrderList":
+            newState= { ...state};
+            newState.selected = action.e;
             return newState;
         default:
             return state;
