@@ -10,7 +10,8 @@ const defaultState = {
     newuserPsd:'',
     newuserId:'',
     orderList:[],
-    selected:[]
+    selected:[],
+    val:''
 }
 export default (state = defaultState, action)=>{
     switch (action.type){
@@ -72,12 +73,16 @@ export default (state = defaultState, action)=>{
             return newState;
         case "showOrderList":
             newState= { ...state};
-            console.log(action.list);
             newState.orderList =action.list;
+            newState.val = '';
             return newState;
         case "changeOrderList":
             newState= { ...state};
             newState.selected = action.e;
+            return newState;
+        case "changeInput":
+            newState= { ...state};
+            newState.val = action.val;
             return newState;
         default:
             return state;

@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import { Table, Button ,Modal,Form, Icon, Input, message,} from 'antd';
 import './index.less'
 import axios from 'axios';
+import xlsx from 'xlsx'
+import { fileToObject } from 'antd/lib/upload/utils';
+
 const columns = [{
     title: '学号',
     dataIndex: 'studentId',
@@ -46,6 +49,7 @@ class UserList extends Component{
                     </span><br/>
                     <div style={{textAlign:"left",paddingLeft:10,marginBottom:20}}>
                         <Button type="primary" style={{marginRight:10}} onClick={this.props.handleChangeShow} >创建用户</Button>
+                        <input type="file" accept=".xlsx,.xls" onChange={(e)=>{this.props.onImportExcel(e,this)}}/>
                         <Button type="danger" style={{marginRight:10}} onClick={()=>{this.props.handleDelete(selectedRowKeys,this)}}>删除用户</Button>
                     </div>
                 </div>
@@ -201,7 +205,50 @@ const mapDispatch=dispatch=>{
                 }
                 dispatch(action)
             })
-        }
+        },
+        onImportExcel(file,_this){
+            // 获取上传的文件对象
+            const { files } = file.target;
+            // 通过FileReader对象读取文件
+            const fileReader = new FileReader();
+            fileReader.onload = event => {
+              try {
+                const { result } = event.target;
+                // 以二进制流方式读取得到整份excel表格对象
+                const workbook = xlsx.read(result, { type: 'binary' });
+                let data = []; // 存储获取到的数据
+                // 遍历每张工作表进行读取（这里默认只读取第一张表）
+                for (const sheet in workbook.Sheets) {
+                  if (workbook.Sheets.hasOwnProperty(sheet)) {
+                    // 利用 sheet_to_json 方法将 excel 转成 json 数据
+                    data = data.concat(xlsx.utils.sheet_to_json(workbook.Sheets[sheet]));
+                    // break; // 如果只取第一张表，就取消注释这行
+                  }
+                }
+                axios.post('/user/addexcel',{
+                    data
+                }).then(res=>{
+                    if(res.data.code == 1){
+                        message.success("批量添加成功");
+                    }
+                    
+                    axios.get('/user/get')
+                    .then(res=>{
+                           let arr =res.data.data.reverse();
+                           _this.props.showList(arr);
+                       })
+                })
+                     
+              } catch (e) {
+                // 这里可以抛出文件类型错误不正确的相关提示
+                message.info("请选择excel表格");
+                return;
+              }
+            };
+            // 以二进制方式打开文件
+            fileReader.readAsBinaryString(files[0]);
+            file.target.value='';
+          }
     }
 }
 export default connect(mapState,mapDispatch)(UserList);
