@@ -1,9 +1,0 @@
-.navleft {
-  top: 0;
-}
-.navleft .title {
-  background: #08213e;
-  color: white;
-  line-height: 90px;
-  text-align: center;
-}
