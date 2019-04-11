@@ -65,6 +65,7 @@ const mapDispatch=dispatch=>{
                             message.error(res.data.msg);
                             return;
                       }else{
+                        localStorage.setItem("userName",res.data.userName);
                         message.success(res.data.msg);
                         const action={
                             type:"login",

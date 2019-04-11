@@ -4,10 +4,11 @@ import {Link} from 'react-router-dom'
 import './header.less'
 class Header extends Component{
     render(){
+        let uName = localStorage.getItem("userName");
         return(
             <div className="header">
                 <div className="container">
-                    <span>{this.props.userName}</span>
+                    <span>{uName}</span>
                     <Link to="/" onClick = {()=>{this.props.exit(this)}}>退出</Link>
                 </div>
             </div>
