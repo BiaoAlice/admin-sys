@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from "react-router-dom"
 import './title.less'
 class Title extends Component{
     render(){
@@ -9,7 +10,7 @@ class Title extends Component{
         },1000)
         return(
             <div className="titleDate">
-                <h3>首页</h3>
+                <h3><Link to="/home">首页</Link></h3>
                 <span>{this.props.date}</span>
             </div>
         )
